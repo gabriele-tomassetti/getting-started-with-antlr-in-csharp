@@ -37,7 +37,7 @@ namespace AntlrCSharp
 
                 foreach(var line in visitor.Lines)
                 {
-                    Console.WriteLine("{0} has said \"{1}\"", line.Person, line.Text);
+                    Console.WriteLine("{0} has said {1}", line.Person, line.Text);
                 }
             }
             catch (Exception ex)

@@ -21,39 +21,39 @@ namespace AntlrCSharpTests
         [TestMethod]
         public void TestChat()
         {
-            SpeakParser parser = Setup("john says hello \n michael says world \n");
+            SpeakParser parser = Setup("john says \"hello\" \n michael says \"world\" \n");
 
             SpeakParser.ChatContext context = parser.chat();
             SpeakVisitor visitor = new SpeakVisitor();
             visitor.Visit(context);
 
-            Assert.AreEqual(visitor.Lines.Count, 2);
+            Assert.AreEqual(2, visitor.Lines.Count);
         }
 
         [TestMethod]
         public void TestLine()
         {
-            SpeakParser parser = Setup("john says hello \n");
+            SpeakParser parser = Setup("john says \"hello\" \n");
 
             SpeakParser.LineContext context = parser.line();
             SpeakVisitor visitor = new SpeakVisitor();
-            SpeakLine line = (SpeakLine) visitor.VisitLine(context);            
+            SpeakLine line = (SpeakLine) visitor.VisitLine(context);     
             
-            Assert.AreEqual(line.Person, "john");
-            Assert.AreEqual(line.Text, "hello");
+            Assert.AreEqual("john", line.Person);
+            Assert.AreEqual("hello", line.Text);
         }
 
         [TestMethod]
         public void TestWrongLine()
         {
-            SpeakParser parser = Setup("john sayan hello \n");
+            SpeakParser parser = Setup("john sayan \"hello\" \n");
 
             var context = parser.line();
             
             Assert.IsInstanceOfType(context, typeof(SpeakParser.LineContext));            
-            Assert.AreEqual(context.name().GetText(), "john");
-            Assert.AreEqual(context.word().GetText(), "sayan");
-            Assert.AreEqual(context.GetText(), "john<missing SAYS>sayanhello\n");
+            Assert.AreEqual("john", context.name().GetText());
+            Assert.IsNull(context.SAYS());
+            Assert.AreEqual("johnsayan\"hello\"\n", context.GetText());
         }
     }
 }

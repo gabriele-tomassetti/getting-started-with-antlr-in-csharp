@@ -6,11 +6,11 @@ grammar Speak;
 
 chat				: line line EOF ;
 
-line				: name SAYS word NEWLINE;
+line				: name SAYS opinion NEWLINE;
 
 name				: WORD ;
 
-word				: WORD ;
+opinion				: TEXT ;
 
 /*
  * Lexer Rules
@@ -26,6 +26,8 @@ fragment UPPERCASE  : [A-Z] ;
 SAYS				: S A Y S ;
 
 WORD				: (LOWERCASE | UPPERCASE)+ ;
+
+TEXT				: '"' .*? '"' ;
 
 WHITESPACE			: (' '|'\t')+ -> skip ;
 

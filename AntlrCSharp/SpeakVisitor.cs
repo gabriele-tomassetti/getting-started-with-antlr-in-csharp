@@ -16,9 +16,9 @@ namespace AntlrCSharp
         public override object VisitLine(SpeakParser.LineContext context)
         {            
             NameContext name = context.name();
-            WordContext word = context.word();
+            OpinionContext opinion = context.opinion();
 
-            SpeakLine line = new SpeakLine() { Person = name.GetText(), Text = word.GetText() };
+            SpeakLine line = new SpeakLine() { Person = name.GetText(), Text = opinion.GetText().Trim('"') };
             Lines.Add(line);
 
             return line;
