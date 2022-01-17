@@ -24,7 +24,7 @@ namespace AntlrCSharpTests
             SpeakParser parser = Setup("john says \"hello\" \n michael says \"world\" \n");
 
             SpeakParser.ChatContext context = parser.chat();
-            SpeakVisitor visitor = new SpeakVisitor();
+            BasicSpeakVisitor visitor = new BasicSpeakVisitor();
             visitor.Visit(context);
 
             Assert.AreEqual(2, visitor.Lines.Count);
@@ -36,7 +36,7 @@ namespace AntlrCSharpTests
             SpeakParser parser = Setup("john says \"hello\" \n");
 
             SpeakParser.LineContext context = parser.line();
-            SpeakVisitor visitor = new SpeakVisitor();
+            BasicSpeakVisitor visitor = new BasicSpeakVisitor();
             SpeakLine line = (SpeakLine) visitor.VisitLine(context);     
             
             Assert.AreEqual("john", line.Person);

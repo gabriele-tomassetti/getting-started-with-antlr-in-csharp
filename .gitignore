@@ -273,3 +273,16 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+packages/
+AntlrCSharp/bin/
+AntlrCSharp/obj/
+AntlrCSharpTests/obj/
+AntlrCSharpTests/bin/
+.vs/
+.ionide/
+AntlrCSharp/Speak.tokens
+AntlrCSharp/SpeakBaseVisitor.cs
+AntlrCSharp/SpeakLexer.cs
+AntlrCSharp/SpeakLexer.tokens
+AntlrCSharp/SpeakParser.cs

@@ -32,3 +32,5 @@ TEXT				: '"' .*? '"' ;
 WHITESPACE			: (' '|'\t')+ -> skip ;
 
 NEWLINE				: ('\r'? '\n' | '\r')+ ;
+
+ANY					: . -> channel(HIDDEN) ;
